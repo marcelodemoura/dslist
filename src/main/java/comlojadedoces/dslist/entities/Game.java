@@ -14,19 +14,22 @@ public class Game {
     @Column(name = "game_year")
     private Integer year;
     private String genre;
-    private String platform;
+    private String platforms;
+    private Double score;
     private String imgUrl;
     private String shortDescription;
     private String longDescription;
 
     public Game() {
     }
-    public Game(Long id, String title, Integer year, String genre, String platform, String imgUrl, String shortDescription, String longDescription) {
+
+    public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl, String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
         this.year = year;
         this.genre = genre;
-        this.platform = platform;
+        this.platforms = platforms;
+        this.score = score;
         this.imgUrl = imgUrl;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
@@ -64,12 +67,20 @@ public class Game {
         this.genre = genre;
     }
 
-    public String getPlatform() {
-        return platform;
+    public String getPlatforms() {
+        return platforms;
     }
 
-    public void setPlatform(String platform) {
-        this.platform = platform;
+    public void setPlatforms(String platforms) {
+        this.platforms = platforms;
+    }
+
+    public Double getscore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        score = score;
     }
 
     public String getImgUrl() {
@@ -99,12 +110,12 @@ public class Game {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Game doce)) return false;
-        return Objects.equals(getId(), doce.getId()) && Objects.equals(getTitle(), doce.getTitle()) && Objects.equals(getYear(), doce.getYear()) && Objects.equals(getGenre(), doce.getGenre()) && Objects.equals(getPlatform(), doce.getPlatform()) && Objects.equals(getImgUrl(), doce.getImgUrl()) && Objects.equals(getShortDescription(), doce.getShortDescription()) && Objects.equals(getLongDescription(), doce.getLongDescription());
+        if (!(o instanceof Game game)) return false;
+        return getId().equals(game.getId()) && Objects.equals(getTitle(), game.getTitle()) && Objects.equals(getYear(), game.getYear()) && Objects.equals(getGenre(), game.getGenre()) && Objects.equals(platforms, game.platforms) && Objects.equals(getscore(), game.getscore()) && Objects.equals(getImgUrl(), game.getImgUrl()) && Objects.equals(getShortDescription(), game.getShortDescription()) && Objects.equals(getLongDescription(), game.getLongDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getId(), getImgUrl());
     }
 }
