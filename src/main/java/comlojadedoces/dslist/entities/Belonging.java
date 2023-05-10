@@ -5,10 +5,12 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
+
 @Table(name = "tb_belonging")
 public class Belonging {
     @EmbeddedId
     private BelongingPk id = new BelongingPk();
+
     private Integer position;
 
     public Belonging() {
@@ -31,7 +33,6 @@ public class Belonging {
     public Integer getPosition() {
         return position;
     }
-
 
     public void setPosition(Integer position) {
         this.position = position;
