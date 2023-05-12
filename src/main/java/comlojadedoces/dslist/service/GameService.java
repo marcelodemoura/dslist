@@ -3,7 +3,8 @@ package comlojadedoces.dslist.service;
 import comlojadedoces.dslist.dto.GameDto;
 import comlojadedoces.dslist.dto.GameMinDTO;
 import comlojadedoces.dslist.entities.Game;
-import comlojadedoces.dslist.repositories.GameReposytory;
+import comlojadedoces.dslist.projections.GameMinProjection;
+import comlojadedoces.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,21 +15,25 @@ import java.util.List;
 public class GameService {
 
     @Autowired
-    private GameReposytory gameReposytory;
+    private GameRepository gameRepository;
 
     @Transactional(readOnly = true)
-    public GameDto findById(Long id){
-        Game result = gameReposytory.findById(id).get();
-         return new GameDto(result);
-//        return dto;
-
-//        GameDto dto= new GameDto(reruslt);
-//        return dto;
+    public GameDto findById(Long id) {
+        Game result = gameRepository.findById(id).get();
+        return new GameDto(result);
     }
+
+    @Transactional(readOnly = true)
     public List<GameMinDTO> findAll() {
-        List<Game> result = gameReposytory.findAll();
+        List<Game> result = gameRepository.findAll();
         return result.stream().map(x -> new GameMinDTO(x)).toList();
 
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId) {
+        List<GameMinProjection> result = gameRepository.searchByList(listId);
+        return result.stream().map(x -> new GameMinDTO(x)).toList();
 
     }
 }
