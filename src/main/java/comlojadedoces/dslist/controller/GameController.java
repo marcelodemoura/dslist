@@ -2,7 +2,6 @@ package comlojadedoces.dslist.controller;
 
 import comlojadedoces.dslist.dto.GameDto;
 import comlojadedoces.dslist.dto.GameMinDTO;
-import comlojadedoces.dslist.entities.Game;
 import comlojadedoces.dslist.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
